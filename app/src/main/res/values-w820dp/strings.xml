@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gps_network_not_enabled">A GPS nem engedélyezett!</string>
+    <string name="open_location_settings">openlocatonsettings</string>
+    <string name="Cancel">mégsem</string>
+    <string name="strGps">GPS</string>
+</resources>

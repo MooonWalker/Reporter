@@ -1,10 +1,11 @@
 package ati.reporter;
 
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
@@ -142,12 +143,12 @@ public class NavigationDrawerFragment extends Fragment
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
+
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
         mDrawerToggle = new ActionBarDrawerToggle(
                 getActivity(),                    /* host Activity */
                 mDrawerLayout,                    /* DrawerLayout object */
-                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
                 R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
                 R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         )
@@ -285,6 +286,21 @@ public class NavigationDrawerFragment extends Fragment
             Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
         }
+        if (item.getItemId() == R.id.actionGps)
+        {
+
+            Location loc= Controller.getLocation();
+
+            if (loc!=null)
+            {
+                Toast.makeText(getActivity(), "GPS: " + loc.toString(), Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(getActivity(), "No GPS", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -297,6 +313,7 @@ public class NavigationDrawerFragment extends Fragment
     {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setIcon(R.drawable.ic_drawer);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
     }
